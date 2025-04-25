@@ -1,0 +1,34 @@
+.img {
+  height: 700px;
+  width: 500px;
+  display: block;
+  object-fit: cover;
+}
+.btn {
+  background-color: black;
+
+  position: absolute;
+  right: 0.1px;
+  top: 0.1px;
+  padding: 0;
+  border-radius: 0;
+  border-bottom-left-radius: 8px;
+}
+.wrapper {
+  background-color: black;
+  overflow: hidden;
+  text-align: center;
+  padding: 0;
+}
+.desc {
+  width: 500px;
+}
+.icon {
+  fill: white;
+}
+.btn:hover {
+  background: transparent;
+}
+.btn:hover .icon {
+  fill: black;
+}
