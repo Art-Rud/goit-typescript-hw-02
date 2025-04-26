@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import style from "./ImageModal.module.css";
 import { IoClose } from "react-icons/io5";
+import { Image } from "../../App";
 const modalStyles = {
   content: {
     top: "50%",
@@ -14,7 +15,12 @@ const modalStyles = {
   },
 };
 Modal.setAppElement("#root");
-function ImageModal({ image, modalIsOpen, closeModal }) {
+interface ImageModalProps {
+  image: Image | null;
+  modalIsOpen: boolean;
+  closeModal: () => void;
+}
+const ImageModal = ({ image, modalIsOpen, closeModal }: ImageModalProps) => {
   return (
     <div className={style.wrapper}>
       {image && (
@@ -47,6 +53,6 @@ function ImageModal({ image, modalIsOpen, closeModal }) {
       )}
     </div>
   );
-}
+};
 
 export default ImageModal;

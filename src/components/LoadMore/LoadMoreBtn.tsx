@@ -2,7 +2,7 @@ const style = {
   marginBottom: 50,
   marginTop: 20,
 };
-function LoadMoreBtn({ load }) {
+function LoadMoreBtn({ load }: { load: () => void }) {
   return (
     <>
       <button onClick={load} style={style}>

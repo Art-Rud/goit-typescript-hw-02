@@ -1,14 +1,24 @@
 import toast, { Toaster } from "react-hot-toast";
 import style from "./SearchBar.module.css";
 import { IoSearch } from "react-icons/io5";
-function SearchBar({ onSearch }) {
-  const handleSubmit = (event) => {
+import { FC, FormEvent } from "react";
+
+interface searchBarProps {
+  onSearch: (text: string) => void;
+}
+const SearchBar: FC<searchBarProps> = ({ onSearch }) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    console.log(event);
+    let input = (event.target as HTMLFormElement).elements.namedItem(
+      "search"
+    ) as HTMLInputElement;
     event.preventDefault();
-    onSearch(event.target.elements.search.value);
-    if (event.target.elements.search.value === "") {
+    if (input.value === "") {
       toast.error("Please enter your request");
     }
-    event.target.elements.search.value = "";
+    onSearch(input.value);
+
+    input.value = "";
   };
 
   return (
@@ -48,5 +58,5 @@ function SearchBar({ onSearch }) {
       />
     </>
   );
-}
+};
 export default SearchBar;

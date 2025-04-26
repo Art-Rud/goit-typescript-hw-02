@@ -7,25 +7,35 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import ImageModal from "./components/ImageModal/ImageModal";
 import LoadMoreBtn from "./components/LoadMore/LoadMoreBtn";
+export interface Image {
+  id: string;
+  description?: string;
+  alt_description: string;
+  likes: number;
+  urls: {
+    regular: string;
+    small: string;
+  };
+}
 
 function App() {
-  const [list, SetList] = useState([]);
+  const [list, SetList] = useState<Image[]>([]);
   const [search, SetSearch] = useState("");
   const [loader, SetLoader] = useState(false);
   const [err, SetErr] = useState(false);
   const [page, SetPage] = useState(1);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [currentImage, SetCurrentImage] = useState(null);
+  const [currentImage, SetCurrentImage] = useState<Image | null>(null);
   const [more, Setmore] = useState(false);
-  function openModal(item) {
+  const openModal = (item: Image) => {
     setIsOpen(true);
     SetCurrentImage(item);
-  }
-  function closeModal() {
+  };
+  const closeModal = () => {
     setIsOpen(false);
     SetCurrentImage(null);
-  }
-  const onSearch = (text) => {
+  };
+  const onSearch = (text: string) => {
     if (search === text) {
       return;
     }
@@ -46,6 +56,7 @@ function App() {
         SetErr(false);
         const data = await fetchPhoto(search, page);
         Setmore(data.length === 9);
+        console.log(data);
 
         SetList((prevList) => {
           return [...prevList, ...data];
