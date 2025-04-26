@@ -54,7 +54,7 @@ function App() {
       try {
         SetLoader(true);
         SetErr(false);
-        const data = await fetchPhoto(search, page);
+        const data: Image[] = await fetchPhoto(search, page);
         Setmore(data.length === 9);
         console.log(data);
 
